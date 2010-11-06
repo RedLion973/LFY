@@ -1,4 +1,5 @@
 # File to ignore
 *.pyc
 *.xml
-*.sqlite3
+*.db
+fixtures/*
