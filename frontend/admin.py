@@ -1,14 +1,21 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib import admin
+from django.contrib.contenttypes import generic
 from LFY.frontend.models import *
-from django import forms
+
+class TagInline(generic.GenericTabularInline):
+    model = Tag
+    extra = 1
 
 class ArticleAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['title'], 'classes': ['wide']}),
         (None, {'fields': ['content', 'author'], 'classes': ['wide', 'extrapretty']}),
-        ('Options', {'fields': ['category','state'], 'classes': ['wide']}),
+        ('Options', {'fields': ['category','published','on_home'], 'classes': ['wide']}),
+    ]
+    inlines = [
+        TagInline,
     ]
     change_form_template = 'admin/frontend/change_form.html'
 
